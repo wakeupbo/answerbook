@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>答案之书 · 第 {{PAGE}} 页</title>
+    <meta name="description" content="命运之页已为你翻开。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="aurora"></div>
+    <div class="aurora aurora-2"></div>
+    <div class="stars" id="stars"></div>
+
+    <main class="container">
+        <section class="page page-result active">
+            <header class="brand small">
+                <div class="brand-mark small-mark">答</div>
+                <div>
+                    <h1 class="brand-title">答案之书</h1>
+                    <p class="brand-sub">第 {{PAGE}} 页</p>
+                </div>
+            </header>
+
+            {{WARN_BLOCK}}
+
+            <div class="book" id="book">
+                <!-- 书底：左边是合上的书脊侧（深色，无页），右边是内页底 -->
+                <div class="book-base">
+                    <div class="book-page-static left"></div>
+                    <div class="book-page-static right"></div>
+                </div>
+                <div class="book-spine"></div>
+
+                <!-- 答案页（右半边） -->
+                <div class="book-answer" id="answerPage">
+                    <div class="answer-content">
+                        <p class="answer-num">— 第 {{PAGE}} 页 —</p>
+                        <p class="answer-text" id="answerText">{{ANSWER}}</p>
+                        <p class="answer-foot">命运已揭示 · 请相信你的心</p>
+                    </div>
+                </div>
+
+                <!-- 翻动页（由 JS 生成，初始在右半边） -->
+                <div class="book-pages" id="pages"></div>
+
+                <!-- 封面（双面：正面深红，背面页面纹理。初始覆盖右半边） -->
+                <div class="book-cover" id="bookCover">
+                    <div class="cover-front">
+                        <div class="cover-inner">
+                            <div class="cover-mark">答</div>
+                            <p class="cover-name">答案之书</p>
+                            <p class="cover-en">The Book of Answers</p>
+                        </div>
+                    </div>
+                    <div class="cover-back"></div>
+                </div>
+            </div>
+
+            <div class="result-actions">
+                <a href="/" class="btn-ghost">再问一次</a>
+            </div>
+        </section>
+    </main>
+    <script src="/script.js"></script>
+</body>
+</html>

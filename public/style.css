@@ -1,0 +1,686 @@
+/* ===== 重置 ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+    width: 100%;
+    min-height: 100vh;
+}
+
+body {
+    font-family: 'Noto Serif SC', 'Songti SC', 'STSong', serif;
+    color: #f5e6c8;
+    background: radial-gradient(ellipse at top, #1a1442 0%, #0d0a28 40%, #050316 100%);
+    background-attachment: fixed;
+    overflow-x: hidden;
+    position: relative;
+    min-height: 100vh;
+}
+
+/* ===== 极光背景 ===== */
+.aurora {
+    position: fixed;
+    top: -10%;
+    left: 50%;
+    width: 120%;
+    height: 60%;
+    transform: translateX(-50%) rotate(-8deg);
+    background: radial-gradient(ellipse at center,
+        rgba(255, 195, 110, 0.18) 0%,
+        rgba(212, 175, 55, 0.10) 30%,
+        rgba(120, 80, 200, 0.08) 55%,
+        transparent 75%);
+    filter: blur(40px);
+    pointer-events: none;
+    z-index: 0;
+    animation: auroraMove 14s ease-in-out infinite alternate;
+}
+
+.aurora-2 {
+    top: 30%;
+    transform: translateX(-50%) rotate(6deg);
+    background: radial-gradient(ellipse at center,
+        rgba(120, 80, 200, 0.14) 0%,
+        rgba(60, 110, 200, 0.10) 35%,
+        transparent 70%);
+    animation-duration: 18s;
+    animation-direction: alternate-reverse;
+}
+
+@keyframes auroraMove {
+    0% { transform: translateX(-55%) rotate(-8deg) translateY(0); opacity: .8; }
+    100% { transform: translateX(-45%) rotate(-4deg) translateY(-20px); opacity: 1; }
+}
+
+/* ===== 星空 ===== */
+.stars {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: #fff;
+    border-radius: 50%;
+    opacity: 0.7;
+    animation: twinkle 3s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: .25; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1.4); box-shadow: 0 0 6px #fff; }
+}
+
+/* ===== 容器 ===== */
+.container {
+    position: relative;
+    z-index: 2;
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 48px 20px 80px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* ===== 页面切换 ===== */
+.page {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    animation: fadeInUp .8s cubic-bezier(.2,.7,.2,1) both;
+}
+
+.page.active { display: flex; }
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== 品牌头部 ===== */
+.brand {
+    text-align: center;
+    margin-bottom: 36px;
+}
+
+.brand-mark {
+    width: 84px;
+    height: 84px;
+    margin: 0 auto 18px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #d4af37 0%, #b8860b 50%, #8a6300 100%);
+    color: #1a1442;
+    font-family: 'Ma Shan Zheng', cursive;
+    font-size: 48px;
+    line-height: 84px;
+    box-shadow: 0 8px 30px rgba(212, 175, 55, .35),
+                inset 0 2px 4px rgba(255, 235, 180, .5),
+                inset 0 -4px 8px rgba(0, 0, 0, .25);
+    animation: markFloat 4s ease-in-out infinite;
+}
+
+@keyframes markFloat {
+    0%, 100% { transform: translateY(0) rotate(0); }
+    50% { transform: translateY(-6px) rotate(2deg); }
+}
+
+.brand-title {
+    font-family: 'Ma Shan Zheng', 'Noto Serif SC', cursive;
+    font-size: 44px;
+    font-weight: 900;
+    letter-spacing: 6px;
+    background: linear-gradient(180deg, #ffe7a8 0%, #d4af37 50%, #b8860b 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 8px rgba(212, 175, 55, .35));
+    margin-bottom: 6px;
+}
+
+.brand-sub {
+    font-size: 13px;
+    letter-spacing: 4px;
+    color: #9a8fc4;
+    text-transform: uppercase;
+    opacity: .85;
+}
+
+.brand.small {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin-bottom: 28px;
+    text-align: left;
+}
+
+.brand.small .brand-title { font-size: 26px; margin-bottom: 2px; }
+.brand.small .brand-sub { font-size: 11px; letter-spacing: 2px; }
+.small-mark {
+    width: 52px !important;
+    height: 52px !important;
+    line-height: 52px !important;
+    font-size: 28px !important;
+    margin: 0 !important;
+}
+
+/* ===== 引导文案 ===== */
+.intro {
+    text-align: center;
+    margin-bottom: 32px;
+    line-height: 2;
+}
+
+.intro p { font-size: 17px; color: #e5d8b5; letter-spacing: 1px; }
+.intro-tip {
+    font-size: 13px !important;
+    color: #8a7fa8 !important;
+    letter-spacing: 3px !important;
+    margin-top: 4px;
+}
+
+/* ===== 表单 ===== */
+.form {
+    width: 100%;
+    max-width: 460px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.field-label {
+    font-size: 14px;
+    color: #c9b97e;
+    letter-spacing: 2px;
+    padding-left: 4px;
+}
+
+.field input,
+.field textarea {
+    width: 100%;
+    background: rgba(255, 255, 255, .04);
+    border: 1px solid rgba(212, 175, 55, .35);
+    border-radius: 12px;
+    padding: 14px 16px;
+    color: #f5e6c8;
+    font-family: inherit;
+    font-size: 16px;
+    line-height: 1.6;
+    outline: none;
+    transition: all .3s;
+    resize: none;
+    box-shadow: inset 0 1px 4px rgba(0, 0, 0, .25);
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+    color: rgba(245, 230, 200, .35);
+    font-size: 14px;
+}
+
+.field input:focus,
+.field textarea:focus {
+    border-color: #d4af37;
+    background: rgba(255, 255, 255, .07);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, .15),
+                inset 0 1px 4px rgba(0, 0, 0, .25);
+}
+
+/* ===== 按钮 ===== */
+.btn-primary {
+    margin-top: 8px;
+    width: 100%;
+    padding: 16px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #d4af37 0%, #b8860b 50%, #8a6300 100%);
+    color: #1a1442;
+    font-family: 'Ma Shan Zheng', 'Noto Serif SC', cursive;
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: 8px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all .35s;
+    box-shadow: 0 10px 30px rgba(212, 175, 55, .35),
+                inset 0 1px 2px rgba(255, 235, 180, .55),
+                inset 0 -3px 5px rgba(0, 0, 0, .2);
+}
+
+.btn-primary span { position: relative; z-index: 1; }
+
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg,
+        transparent,
+        rgba(255, 255, 255, .55),
+        transparent);
+    transition: left .7s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 38px rgba(212, 175, 55, .5),
+                inset 0 1px 2px rgba(255, 235, 180, .55),
+                inset 0 -3px 5px rgba(0, 0, 0, .2);
+}
+
+.btn-primary:hover::before { left: 100%; }
+.btn-primary:active { transform: translateY(0); }
+
+.btn-ghost {
+    display: inline-block;
+    padding: 12px 32px;
+    border: 1px solid rgba(212, 175, 55, .5);
+    border-radius: 30px;
+    color: #d4af37;
+    text-decoration: none;
+    font-size: 15px;
+    letter-spacing: 4px;
+    transition: all .3s;
+    background: rgba(212, 175, 55, .06);
+}
+
+.btn-ghost:hover {
+    background: rgba(212, 175, 55, .18);
+    border-color: #d4af37;
+    transform: translateY(-2px);
+}
+
+/* ===== 提示 ===== */
+.alert {
+    width: 100%;
+    max-width: 460px;
+    padding: 12px 16px;
+    border-radius: 10px;
+    background: rgba(220, 80, 80, .15);
+    border: 1px solid rgba(220, 80, 80, .45);
+    color: #ffcfcf;
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.warn-tip {
+    font-size: 12px;
+    color: #d8b16a;
+    background: rgba(212, 175, 55, .1);
+    border: 1px solid rgba(212, 175, 55, .3);
+    padding: 8px 14px;
+    border-radius: 8px;
+    margin-bottom: 18px;
+}
+
+.foot {
+    margin-top: 36px;
+    font-size: 12px;
+    color: #6f6593;
+    letter-spacing: 4px;
+    opacity: .8;
+}
+
+.result-actions {
+    margin-top: 36px;
+    text-align: center;
+}
+
+/* ===== 书本 3D（展开式双页） ===== */
+.book {
+    position: relative;
+    width: 460px;
+    height: 320px;
+    margin: 30px auto 0;
+    perspective: 2400px;
+    transform-style: preserve-3d;
+}
+
+/* 书底：左右两页静态背景 */
+.book-base {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    border-radius: 4px 12px 12px 4px;
+    overflow: hidden;
+    box-shadow: 0 22px 50px rgba(0, 0, 0, .6),
+                0 6px 12px rgba(0, 0, 0, .4);
+}
+
+.book-page-static {
+    flex: 1;
+    position: relative;
+}
+
+/* 右页：内页底（页面纹理，答案页会盖在其上） */
+.book-page-static.right {
+    background: linear-gradient(135deg, #f6efe0 0%, #e8dcc0 100%);
+}
+.book-page-static.right::after {
+    content: '';
+    position: absolute;
+    inset: 14px 18px;
+    border: 1px solid rgba(180, 150, 100, .35);
+    border-radius: 2px;
+    pointer-events: none;
+}
+.book-page-static.right::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 16px; height: 100%;
+    background: linear-gradient(90deg, rgba(0, 0, 0, .22), transparent);
+    z-index: 2;
+}
+
+/* 左页：合上的书脊侧（深色书底，无内页纹理）
+   设计理念：封面未翻开时左边是一本书合上的侧面，
+   翻开后封面背面与翻动页会依次堆叠在此侧 */
+.book-page-static.left {
+    background: linear-gradient(135deg, #2a1f3a 0%, #15101f 100%);
+    box-shadow: inset -3px 0 10px rgba(0, 0, 0, .5);
+}
+.book-page-static.left::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 16px; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 0, 0, .35));
+    z-index: 2;
+}
+
+/* 书脊 */
+.book-spine {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 100%;
+    background: linear-gradient(180deg,
+        rgba(0, 0, 0, .55) 0%,
+        rgba(0, 0, 0, .25) 50%,
+        rgba(0, 0, 0, .55) 100%);
+    z-index: 6;
+    box-shadow: 0 0 8px rgba(0, 0, 0, .35);
+}
+
+/* 答案页（右半边） */
+.book-answer {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    z-index: 3;
+    background: linear-gradient(135deg, #faf3e3 0%, #ece1c5 100%);
+    border-radius: 0 4px 4px 0;
+    padding: 22px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    opacity: 0;
+    transition: opacity .8s ease;
+    overflow: hidden;
+}
+
+.book-answer.show { opacity: 1; }
+
+.book-answer::after {
+    content: '';
+    position: absolute;
+    inset: 14px 18px;
+    border: 1px solid rgba(180, 150, 100, .5);
+    border-radius: 2px;
+    pointer-events: none;
+}
+
+.answer-content {
+    color: #3a2810;
+    position: relative;
+    z-index: 1;
+}
+
+.answer-num {
+    font-size: 12px;
+    color: #8a6d3b;
+    letter-spacing: 4px;
+    margin-bottom: 22px;
+}
+
+.answer-text {
+    font-family: 'Ma Shan Zheng', 'Noto Serif SC', cursive;
+    font-size: 22px;
+    line-height: 1.6;
+    color: #2a1c08;
+    font-weight: 700;
+    margin-bottom: 22px;
+    padding: 0 4px;
+    animation: answerReveal 1s .3s both;
+}
+
+@keyframes answerReveal {
+    0% { opacity: 0; transform: translateY(10px); filter: blur(8px); }
+    100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+.answer-foot {
+    font-size: 11px;
+    color: #8a6d3b;
+    letter-spacing: 3px;
+    margin-top: 8px;
+}
+
+/* 翻动页（初始在右半边，绕书脊翻到左半边） */
+.book-pages {
+    position: absolute;
+    inset: 0;
+    z-index: 20;
+    transform-style: preserve-3d;
+}
+
+.page-leaf {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(135deg, #f6efe0 0%, #e8dcc0 100%);
+    border-radius: 0 4px 4px 0;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, .25);
+    transform-origin: left center;
+    transform: rotateY(0deg);
+    transition: transform 1.15s cubic-bezier(.45, .12, .25, 1);
+    backface-visibility: visible;
+    z-index: 20;
+}
+
+.page-leaf::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 16px; height: 100%;
+    background: linear-gradient(90deg, rgba(0, 0, 0, .22), transparent);
+}
+
+.page-leaf::after {
+    content: '';
+    position: absolute;
+    inset: 14px 18px;
+    border: 1px solid rgba(180, 150, 100, .35);
+    border-radius: 2px;
+    pointer-events: none;
+}
+
+.page-leaf.flipped {
+    transform: rotateY(-180deg);
+}
+
+/* 封面（双面容器，初始覆盖右半边，绕书脊翻开）
+   设计理念：合上的书只有封面可见；翻开后封面背面出现在左侧，
+   之后翻动页依次堆叠在左侧，形成"翻页后左边才有页"的视觉 */
+.book-cover {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    z-index: 30;
+    transform-origin: left center;
+    transform: rotateY(0deg);
+    transition: transform 1.5s cubic-bezier(.45, .12, .25, 1);
+    transform-style: preserve-3d;
+}
+
+.book-cover.opened {
+    transform: rotateY(-180deg);
+}
+
+/* 封面正面（深红 + 金色装饰） */
+.cover-front {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    background: linear-gradient(135deg, #5a1a2a 0%, #3a0f1a 50%, #22060f 100%);
+    border-radius: 0 4px 4px 0;
+    box-shadow: 0 14px 32px rgba(0, 0, 0, .55),
+                inset 0 1px 2px rgba(255, 200, 150, .15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 18px;
+    overflow: hidden;
+}
+
+.cover-front::before {
+    content: '';
+    position: absolute;
+    inset: 8px;
+    border: 1px solid rgba(212, 175, 55, .55);
+    border-radius: 2px;
+    pointer-events: none;
+}
+
+.cover-front::after {
+    content: '';
+    position: absolute;
+    inset: 14px;
+    border: 1px solid rgba(212, 175, 55, .25);
+    border-radius: 2px;
+    pointer-events: none;
+}
+
+/* 封面背面（翻过后显示在左半边，页面纹理） */
+.cover-back {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    transform: rotateY(180deg);
+    background: linear-gradient(135deg, #f6efe0 0%, #e8dcc0 100%);
+    border-radius: 0 4px 4px 0;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, .25);
+}
+
+.cover-back::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 16px; height: 100%;
+    background: linear-gradient(90deg, rgba(0, 0, 0, .22), transparent);
+}
+
+.cover-back::after {
+    content: '';
+    position: absolute;
+    inset: 14px 18px;
+    border: 1px solid rgba(180, 150, 100, .35);
+    border-radius: 2px;
+    pointer-events: none;
+}
+
+.cover-inner {
+    text-align: center;
+    z-index: 2;
+}
+
+.cover-mark {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 16px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #d4af37 0%, #b8860b 50%, #8a6300 100%);
+    color: #3a0f1a;
+    font-family: 'Ma Shan Zheng', cursive;
+    font-size: 32px;
+    line-height: 60px;
+    box-shadow: 0 4px 14px rgba(212, 175, 55, .45),
+                inset 0 1px 2px rgba(255, 235, 180, .55),
+                inset 0 -3px 5px rgba(0, 0, 0, .25);
+}
+
+.cover-name {
+    font-family: 'Ma Shan Zheng', 'Noto Serif SC', cursive;
+    font-size: 20px;
+    letter-spacing: 4px;
+    color: #f5d690;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, .5);
+}
+
+.cover-en {
+    margin-top: 6px;
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: rgba(245, 214, 144, .6);
+    text-transform: uppercase;
+}
+
+/* ===== 移动端适配 ===== */
+@media (max-width: 540px) {
+    .container { padding: 32px 18px 60px; }
+    .brand-mark { width: 72px; height: 72px; line-height: 72px; font-size: 40px; }
+    .brand-title { font-size: 36px; letter-spacing: 4px; }
+    .brand-sub { font-size: 11px; letter-spacing: 3px; }
+    .intro p { font-size: 15px; }
+    .intro-tip { font-size: 11px !important; }
+    .field-label { font-size: 12px; }
+    .field input, .field textarea { font-size: 15px; padding: 13px 14px; }
+    .btn-primary { font-size: 17px; letter-spacing: 6px; padding: 15px; }
+
+    .book { width: 340px; height: 250px; }
+    .cover-mark { width: 48px; height: 48px; line-height: 48px; font-size: 26px; }
+    .cover-name { font-size: 17px; letter-spacing: 3px; }
+    .answer-text { font-size: 17px; }
+    .answer-num { font-size: 11px; letter-spacing: 3px; }
+    .answer-foot { font-size: 10px; }
+    .book-answer { padding: 18px 14px; }
+}
+
+@media (max-width: 360px) {
+    .brand-title { font-size: 32px; }
+    .book { width: 300px; height: 220px; }
+    .answer-text { font-size: 15px; }
+    .cover-mark { width: 42px; height: 42px; line-height: 42px; font-size: 22px; }
+    .cover-name { font-size: 15px; }
+}
+
+/* ===== 触发翻页时禁止点击 ===== */
+.book.flipping { pointer-events: none; }

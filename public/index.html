@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>答案之书 · 翻开命运之页</title>
+    <meta name="description" content="心里想着一件事，翻开答案之书，让命运之页告诉你答案。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="aurora"></div>
+    <div class="aurora aurora-2"></div>
+    <div class="stars" id="stars"></div>
+
+    <main class="container">
+        <section class="page page-input active">
+            <header class="brand">
+                <div class="brand-mark">答</div>
+                <h1 class="brand-title">答案之书</h1>
+                <p class="brand-sub">The Book of Answers</p>
+            </header>
+
+            <div class="intro">
+                <p>当心中迷茫，让书页替你回答。</p>
+                <p class="intro-tip">闭上眼睛 · 深呼吸 · 想好你的问题</p>
+            </div>
+
+            {{ERROR_BLOCK}}
+
+            <form class="form" method="POST" action="/submit" autocomplete="off">
+                <label class="field">
+                    <span class="field-label">你心里想的事情</span>
+                    <textarea name="question" rows="3" maxlength="200"
+                        placeholder="例如：我应该接受这份工作吗？" required></textarea>
+                </label>
+
+                <label class="field">
+                    <span class="field-label">翻到第几页</span>
+                    <input type="text" name="page" inputmode="numeric"
+                        placeholder="输入页码即可，如 2 或 第 2 页" required>
+                </label>
+
+                <button type="submit" class="btn-primary">
+                    <span>翻开这一页</span>
+                </button>
+            </form>
+
+            <footer class="foot">问题与答案，无关却又相契。</footer>
+        </section>
+    </main>
+    <script src="/script.js"></script>
+</body>
+</html>

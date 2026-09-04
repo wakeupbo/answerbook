@@ -1,0 +1,13 @@
+{
+  "name": "answer-book",
+  "version": "1.0.0",
+  "description": "答案之书网站 - 心里想着一件事，翻开命运之页",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "init-db": "node init-db.js"
+  },
+  "dependencies": {
+    "mysql2": "^3.24.3"
+  }
+}
